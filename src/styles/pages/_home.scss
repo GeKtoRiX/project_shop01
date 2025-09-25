@@ -1,0 +1,23 @@
+﻿@use "../mixins.scss" as mixins;
+
+body.page-home {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0;
+
+  .header {
+    border: 1px solid blue;
+    height: 150px;
+  }
+
+  .main {
+    border: 1px solid red;
+    @include mixins.default-swiper;
+  }
+
+  .footer {
+    border: 1px solid blue;
+    height: 150px;
+  }
+}
