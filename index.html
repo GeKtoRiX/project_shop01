@@ -1,29 +1,127 @@
-﻿<!-- Указываем тип документа HTML5 -->
+﻿<!-- Стандартный DOCTYPE HTML5 -->
 <!DOCTYPE html>
-<!-- Открываем корневой тег html с указанием языка -->
+<!-- Указываем язык страницы -->
 <html lang="en">
-  <!-- Заголовочная часть документа -->
+  <!-- Метаданные документа -->
   <head>
-    <!-- Кодировка документа UTF-8 -->
+    <!-- Кодировка UTF-8 -->
     <meta charset="UTF-8" />
-    <!-- Подключаем иконку сайта -->
+    <!-- Подключаем favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <!-- Настройки адаптивного отображения на устройствах -->
+    <!-- Масштабирование на мобильных устройствах -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Заголовок страницы -->
     <title>Template Project</title>
   </head>
   <!-- Основное содержимое страницы -->
   <body class="page-home">
-    <!-- Шапка страницы -->
-    <header class="header"></header>
+    <!-- Шапка сайта -->
+    <header class="header">
+      <!-- Верхняя часть шапки -->
+      <div class="header-top">
+        <div class="container">
+          <div class="header-top__inner">
+            <!-- Главное меню -->
+            <nav class="header-menu">
+              <ul class="header-menu__list">
+                <li class="header-menu__item">
+                  <a class="header-menu__link" href="#">Магазины</a>
+                </li>
+                <li class="header-menu__item">
+                  <a class="header-menu__link" href="#">Акции</a>
+                </li>
+                <li class="header-menu__item">
+                  <a class="header-menu__link" href="#">Доставка и оплата</a>
+                </li>
+              </ul>
+            </nav>
+            <!-- Логотип сайта -->
+            <a class="logo" href="#">
+              <img
+                class="logo__img"
+                src="./src/assets/icons/site-logo.svg"
+                width="81"
+                height="76"
+                alt="Site Logo"
+              />
+            </a>
+            <!-- Блок контактов и иконок -->
+            <div class="header-box">
+              <p class="address">Москва, ул. Науки 25</p>
+              <ul class="user-list">
+                <li class="user-list__item">
+                  <a class="user-list__link" href="#">
+                    <img
+                      src="./src/assets/icons/favourite.svg"
+                      alt="favourites"
+                    />
+                  </a>
+                </li>
+                <li class="user-list__item">
+                  <a class="user-list__link" href="#">
+                    <img src="./src/assets/icons/user.svg" alt="user profile" />
+                  </a>
+                </li>
+                <li class="user-list__item">
+                  <a class="user-list__link shop-cart" href="#">
+                    <img
+                      src="./src/assets/icons/shop-cart.svg"
+                      alt="shop-cart"
+                    />
+                    <div class="shop-cart__num">8</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Нижняя часть шапки -->
+      <div class="header-bottom">
+        <div class="container">
+          <div class="header-bottom__inner">
+            <ul class="menu-categories">
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Квадроциклы</a>
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Катера</a>
+              </li>
+              <li class="menu-categories__item">
+                <a
+                  class="menu-categories__link menu-categories__link--active"
+                  href="#"
+                  >Гидроциклы</a
+                >
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Лодки</a>
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Вездеходы</a>
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Снегоходы</a>
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Двигатели</a>
+              </li>
+              <li class="menu-categories__item">
+                <a class="menu-categories__link" href="#">Запчасти</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
     <!-- Основной контент -->
     <main class="main"></main>
-    <!-- Подвал страницы -->
+    <!-- Подвал сайта -->
     <footer class="footer"></footer>
     <!-- Подключаем основной скрипт -->
     <script type="module" src="/src/main.js"></script>
-    <!-- Подключаем скрипт страницы home -->
+    <!-- Скрипт для страницы home -->
     <script type="module" src="/src/pages/home.js"></script>
   </body>
 </html>

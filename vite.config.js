@@ -147,6 +147,8 @@ export default defineConfig({
     assetsDir: 'assets',
     // Включаем sourcemap по переменной окружения.
     sourcemap: process.env.SOURCE_MAP === 'true',
+    // Отключает inline, всегда создаёт отдельные файлы
+    assetsInlineLimit: 0,
     // Дополнительная конфигурация Rollup.
     rollupOptions: {
       // Подключаем динамически сформированный объект точек входа.
@@ -154,3 +156,5 @@ export default defineConfig({
     },
   },
 })
+
+
