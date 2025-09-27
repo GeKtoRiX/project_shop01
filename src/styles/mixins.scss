@@ -5,55 +5,85 @@
     // Растягивание блока на всю доступную ширину.
     width: 100%;
     // Ограничиваем максимальную ширину контейнера.
-    max-width: 1170px;
-    // Центрируем контейнер горизонтально.
-    margin: 0 auto;
-  }
+    height: 100%;
 
+    /* Цвет стрелок (активное состояние) */
+    --swiper-navigation-color: #fff;
+    /* Цвет стрелок в неактивном состоянии */
+    --swiper-navigation-disabled-color: #999;
+    /* Отступ стрелок от боковых краёв(по умолчанию 22px) */
+    --swiper-navigation-sides-offset: 22px;
+
+    /* Смещение стрелки "Prev" от верхнего края */
+    --swiper-navigation-top-offset: 50%;
+    /* Смещение стрелки "Prev" от нижнего края(обычно auto) */
+    --swiper-navigation-bottom-offset: auto;
+
+    /* Смещение стрелки "Next" от верхнего края */
+    --swiper-navigation-next-top-offset: 50%;
+    /* Смещение стрелки "Next" от нижнего края(обычно auto) */
+    --swiper-navigation-next-bottom-offset: auto;
+  }
   /* Обёртка, в которой крутятся слайды */
   .swiper-wrapper {
     /* Слайды тянутся на одинаковую высоту */
     align-items: stretch;
   }
-
   /* Отдельный слайд */
   .swiper-slide {
+    // Определяем высоту слайда
+    width: 100%;
+    // Определяем минимальную высоту слайда
+    height: 100%;
     /* Делаем флекс-контейнер */
     display: flex;
     /* Центрируем содержимое по вертикали */
     align-items: center;
     /* Центрируем содержимое по горизонтали */
     justify-content: center;
-    // Увеличиваем размер шрифта внутри слайда
-    font-size: 1.5rem;
     // Устанавливаем светлый фон слайда
     background-color: #f3f4f6;
-    // Скругляем углы слайда
-    border-radius: 0.75rem;
-    // Определяем минимальную высоту слайда
-    min-height: 240px;
-    // Добавляем мягкую тень вокруг слайда
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+    cursor: pointer;
   }
-
-  /* Стрелки навигации */
+  /* Кастомные настройки навигации. */
   .swiper-button-prev,
   .swiper-button-next {
-    // Задаем цвет иконок кнопок
-    color: #0f172a;
+    width: 15px;
+    height: 30px;
   }
+  /*  Стандартные стиои пагинации */
+  .swiper-pagination {
+    /* Отступ сверху(auto = не используется) */
+    --swiper-pagination-top: auto;
+    /* Отступ снизу блока пагинации */
+    --swiper-pagination-bottom: 40px;
+    /* Смещение от левого края */
+    --swiper-pagination-left: auto;
+    /* Смещение от правого края */
+    --swiper-pagination-right: auto;
 
-  /* Точки пагинации */
+    /* Универсальный размер буллета(ширина,высота одновременно) */
+    --swiper-pagination-bullet-size: 11px;
+    /* Ширина буллета */
+    // --swiper-pagination-bullet-width: 11px;
+    /* Высота буллета */
+    // --swiper-pagination-bullet-height: 11px;
+
+    /* Радиус скругления буллета (50% = круг) */
+    --swiper-pagination-bullet-border-radius: 50%;
+
+    /* Цвет активного буллета */
+    --swiper-pagination-color: #ffffff;
+    /* Прозрачность активного буллета */
+    --swiper-pagination-bullet-opacity: 1;
+
+    /* Цвет неактивных буллетов */
+    --swiper-pagination-bullet-inactive-color: transparent;
+    /* Прозрачность неактивных буллетов */
+    --swiper-pagination-bullet-inactive-opacity: 1;
+  }
+  /* Кастомные стили буллетов пагинации */
   .swiper-pagination-bullet {
-    // Устанавливаем базовый цвет точек
-    background: #94a3b8;
-    // Делаем точки полностью непрозрачными
-    opacity: 1;
-  }
-
-  // Активный индикатор пагинации
-  .swiper-pagination-bullet-active {
-    // Подсвечиваем активную точку оттенком синего
-    background: #2563eb;
+    border: 1px solid #ffffff;
   }
 }

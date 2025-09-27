@@ -1,5 +1,3 @@
-import '../styles/pages/_home.scss'
-
 /* Импортируем  основной класс Swiper. 
 Это «движок» слайдера, который мы будем создавать через new Swiper()
 */
@@ -10,13 +8,14 @@ import { Swiper } from 'swiper'
 - Pagination: буллеты (точки) для навигации.
 */
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-
 /* Подключаем базовые стили Swiper, без которых слайдер не будет отображаться корректно. */
 import 'swiper/css'
 /* Подключаем стили для модуля Navigation (оформление стрелок). */
 import 'swiper/css/navigation'
 /* Подключаем стили для модуля Pagination (оформление точек). */
 import 'swiper/css/pagination'
+/* Подключаем кастомные стили страницы index.html */
+import '../styles/pages/_home.scss'
 
 /* Ждём полной загрузки структуры HTML (DOM).
    Это значит, что скрипт выполнится только тогда, когда весь HTML будет уже доступен.
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Создаём новый экземпляр слайдера Swiper.
   '.mySwiper' — это CSS-селектор контейнера слайдера в HTML.
   */
-  new Swiper('.mySwiper', {
+  new Swiper('.banner-section__slider', {
     /* Подключаем дополнительные модули Swiper: навигацию, пагинацию и автопрокрутку.
     Без них соответствующие функции работать не будут.
     */
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Настройки автоматического перелистывания (autoplay). */
     autoplay: {
       /* Время задержки между автоматическими переключениями (5000 мс = 5 секунд). */
-      delay: 5000,
+      delay: 3000,
       /* При взаимодействии со сладером autoplay не отключается и продолжает работать. */
       disableOnInteraction: false,
     },
@@ -58,5 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
       /* Буллеты можно кликать мышкой — при этом переключается слайд. */
       clickable: true,
     },
-  }) // ← Конец настроек Swiper
-}) // ← Конец обработчика события DOMContentLoaded
+  })
+}) 

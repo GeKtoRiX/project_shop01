@@ -1,6 +1,5 @@
 ﻿@use "../variables.scss" as vars;
 
-// Глобально задаём поведение box-sizing
 *,
 *::before,
 *::after {
@@ -19,6 +18,7 @@ h6 {
 
 img {
   display: block;
+  object-fit: cover;
 }
 
 ul,
@@ -33,12 +33,11 @@ a {
   color: vars.$main-color;
 }
 
-// Базовые параметры текста по умолчанию
 body {
   // Подключаем основной шрифт и нужное начертание
   @extend %SFProDisplay-400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 21px;
   color: vars.$main-color;
 }
 

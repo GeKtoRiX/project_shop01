@@ -1,10 +1,9 @@
 ﻿@use "../mixins.scss" as mixins;
 @use "../variables" as vars;
-// @include mixins.default-swiper;
+@include mixins.default-swiper;
 
 body.page-home {
   .header {
-    margin-bottom: 77px;
     .header-top {
       @extend %SFProDisplay-700;
       &__inner {
@@ -86,12 +85,12 @@ body.page-home {
     }
 
     .header-bottom {
+      margin-bottom: 77px;
       &__inner {
         background-color: vars.$base-color;
         .menu-categories {
           display: flex;
           justify-content: space-around;
-          @extend %SFProDisplay-400;
           &__item {
             position: relative;
             padding: 26.5px 0;
@@ -99,12 +98,7 @@ body.page-home {
           }
 
           &__link {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            // Анимация "приходящей" полосы.
+            position: relative;
             &::before {
               content: "";
               position: absolute;
@@ -143,6 +137,113 @@ body.page-home {
   }
 
   .main {
+    .banner-section {
+      &__inner {
+        height: 400px;
+        display: flex;
+        gap: 31px;
+      }
+      &__slider {
+        width: 870px;
+        height: 100%;
+      }
+      &__item {
+        border: 1px solid vars.$second-color;
+        border-radius: 4px;
+        width: 270px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .sale-item {
+          &__top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+          &__info {
+            border-top-left-radius: 3px;
+            width: 92px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @extend %ProximaNova-600;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #fff;
+            background-color: vars.$accent-color;
+          }
+          &__price-new {
+            position: relative;
+            padding: 0 29px 10px 0;
+            @extend %Barlow-700;
+            font-size: 27px;
+            line-height: 32px;
+            color: vars.$accent-color;
+          }
+          &__price-new::after {
+            position: absolute;
+            content: "";
+            width: 15px;
+            height: 18px;
+            top: 9px;
+            right: 6px;
+            background-image: url(../../assets/icons/rus-currency.svg);
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+          &__price-old {
+            position: relative;
+            margin-right: 20px;
+            text-align: right;
+            @extend %Barlow-400;
+            font-size: 14px;
+            color: vars.$second-color;
+            background-image: url(../../assets/icons/line-through.svg);
+            background-position: center right -25px;
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+          &__price-old::after {
+            position: absolute;
+            content: "";
+            width: 8px;
+            height: 10px;
+            top: 6px;
+            right: -12px;
+            background-image: url(../../assets/icons/rus-currency-old.svg);
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+
+          &__title {
+            width: 237px;
+            padding: 0 33px;
+            @extend %SFProDisplay-700;
+            text-align: center;
+          }
+          &__footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 25px 20px;
+            background-color: rgba(vars.$base-color, 0.8);
+          }
+          &__date {
+            @extend %Barlow-700;
+            color: vars.$accent-color;
+          }
+        }
+      }
+    }
   }
 
   .footer {
