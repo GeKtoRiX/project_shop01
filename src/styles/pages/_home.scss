@@ -85,7 +85,7 @@ body.page-home {
     }
 
     .header-bottom {
-      margin-bottom: 77px;
+      margin-bottom: 80px;
       &__inner {
         background-color: vars.$base-color;
         .menu-categories {
@@ -139,9 +139,10 @@ body.page-home {
   .main {
     .banner-section {
       &__inner {
-        height: 400px;
         display: flex;
+        height: 400px;
         gap: 31px;
+        margin-bottom: 80px;
       }
       &__slider {
         width: 870px;
@@ -242,6 +243,137 @@ body.page-home {
             color: vars.$accent-color;
           }
         }
+      }
+    }
+    .search {
+      height: 122px;
+      margin-bottom: 80px;
+
+      &__content-item {
+        display: none;
+        &--active {
+          display: block;
+        }
+      }
+      &__content-form {
+        min-width: 0;
+        height: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      &__content-input {
+        border: none;
+        border-radius: 3px;
+        height: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding-left: 26px;
+        @extend %SFProDisplay-400;
+        font-size: 16px;
+        background-color: vars.$base-color;
+        &::placeholder {
+          color: #656464;
+        }
+      }
+
+      &__content-btn {
+        border: none;
+        border-radius: 3px;
+        height: 100%;
+        flex: 0 0 auto;
+        background: none;
+        margin-left: -3px;
+        padding: 0 38px 0 40px;
+        @extend %SFProDisplay-700;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: vars.$accent-color;
+      }
+    }
+
+    .search .jtabs-headers {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+    .search .jtabs-headers div {
+      padding: 11px 26px 12px;
+      @extend %SFProDisplay-400;
+      font-size: 20px;
+      background: none;
+      cursor: pointer;
+    }
+
+    .search .jtabs-headers .jtabs-selected {
+      border-radius: 5px;
+      @extend %SFProDisplay-700;
+      font-size: 20px;
+      background-color: vars.$base-color;
+    }
+
+    .categories {
+      margin-bottom: 80px;
+      &__inner {
+        // border: 1px solid red;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      &__item {
+        border: 1px solid #cdcdcd;
+        border-radius: 3px;
+        width: 370px;
+        height: 129px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        transition: all 0.3s;
+        &:hover {
+          color: vars.$accent-color;
+          border: none;
+          box-shadow: 3px 3px 20px 0 rgba(50, 50, 50, 0.25);
+        }
+      }
+      &__item-content {
+        height: 100%;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 0 0 20px;
+      }
+      &__item-title {
+        margin: 20px 0;
+        @extend %Barlow-700;
+        font-size: 23px;
+      }
+      &__item-info {
+        position: relative;
+        @extend %SFProDisplay-400;
+        font-size: 14px;
+        color: vars.$second-color;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 6px;
+          height: 9px;
+          top: 50%;
+          left: 65px;
+          transform: translateY(-50%);
+          background-image: url(../../assets/icons/arrow-right.svg);
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+
+      &__item-img {
+        object-fit: contain;
+        flex: 1 1 auto;
       }
     }
   }

@@ -1,61 +1,148 @@
-/* Импортируем  основной класс Swiper. 
-Это «движок» слайдера, который мы будем создавать через new Swiper()
-*/
-import { Swiper } from 'swiper'
-/* Импортируем отдельные модули, которые расширяют функциональность Swiper.
-- Autoplay: автоматическое пролистывание слайдов.
-- Navigation: стрелки «вперёд/назад».
-- Pagination: буллеты (точки) для навигации.
-*/
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-/* Подключаем базовые стили Swiper, без которых слайдер не будет отображаться корректно. */
-import 'swiper/css'
-/* Подключаем стили для модуля Navigation (оформление стрелок). */
-import 'swiper/css/navigation'
-/* Подключаем стили для модуля Pagination (оформление точек). */
-import 'swiper/css/pagination'
-/* Подключаем кастомные стили страницы index.html */
-import '../styles/pages/_home.scss'
+import { Swiper } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-/* Ждём полной загрузки структуры HTML (DOM).
-   Это значит, что скрипт выполнится только тогда, когда весь HTML будет уже доступен.
-*/
-document.addEventListener('DOMContentLoaded', () => {
+import jSuites from "jsuites";
+import "jsuites/dist/jsuites.css";
 
-  /* Создаём новый экземпляр слайдера Swiper.
-  '.mySwiper' — это CSS-селектор контейнера слайдера в HTML.
-  */
-  new Swiper('.banner-section__slider', {
-    /* Подключаем дополнительные модули Swiper: навигацию, пагинацию и автопрокрутку.
-    Без них соответствующие функции работать не будут.
-    */
-    modules: [Navigation, Pagination, Autoplay],
-    /* Количество слайдов, отображаемых одновременно на экране. */
+import "../styles/pages/_home.scss";
+
+/*
+ * Когда весь DOM полностью загружен (document готов),
+ * выполняем инициализацию слайдера и вкладок.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  /*
+   * Создаём новый экземпляр Swiper.
+   * Первый параметр — CSS-селектор контейнера слайдера (.banner-section__slider).
+   * Второй параметр — объект настроек.
+   */
+  new Swiper(".banner-section__slider", {
+    /*
+     * Подключаем нужные модули.
+     * Без них слайдер не будет знать про стрелки, точки и автопрокрутку.
+     */
+    modules: [
+      /*
+       * Navigation — добавляет стрелки «вперёд/назад».
+       * Сопрягается с объектом настроек `navigation` ниже.
+       */
+      Navigation,
+
+      /*
+       * Pagination — рисует буллеты (точки) для навигации.
+       * Работает в связке с объектом `pagination` ниже.
+       */
+      Pagination,
+
+      /*
+       * Autoplay — включает автоматическое пролистывание слайдов.
+       * Конкретные параметры управляются в объекте `autoplay` ниже.
+       */
+      Autoplay,
+    ],
+
+    /*
+     * Количество видимых слайдов одновременно.
+     * Здесь всегда показывается один слайд.
+     */
     slidesPerView: 1,
-    /* Включаем бесконечный цикл слайдов: после последнего снова идём к первому. */
+
+    /*
+     * Включаем бесконечный цикл.
+     * После последнего слайда снова идёт первый.
+     */
     loop: true,
-    /*  Скорость анимации перелистывания (в миллисекундах). */
+
+    /*
+     * Скорость анимации переключения (в миллисекундах).
+     * Здесь — 600 мс.
+     */
     speed: 600,
-    /* Настройки автоматического перелистывания (autoplay). */
+
+    /*
+     * Настройки автопрокрутки.
+     * - delay: задержка между переключениями (3000 мс = 3 секунды).
+     * - disableOnInteraction: false → автопрокрутка не останавливается при ручном управлении.
+     */
     autoplay: {
-      /* Время задержки между автоматическими переключениями (5000 мс = 5 секунд). */
       delay: 3000,
-      /* При взаимодействии со сладером autoplay не отключается и продолжает работать. */
       disableOnInteraction: false,
     },
-    /* Настройки кнопок «вперёд» и «назад». */
+
+    /*
+     * Настройки стрелок навигации.
+     * Указываем селекторы кнопок "вперёд" и "назад".
+     */
     navigation: {
-      /* CSS-селектор кнопки «следующий слайд». */
-      nextEl: '.swiper-button-next',
-      /* CSS-селектор кнопки «предыдущий слайд». */
-      prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
-    /* Настройки пагинации(точек/буллетов внизу слайдера). */
+
+    /*
+     * Настройки пагинации (точки).
+     * - el: контейнер для точек.
+     * - clickable: true → точки можно кликать.
+     */
     pagination: {
-      /* CSS-селектор контейнера для пагинации. */
-      el: '.swiper-pagination',
-      /* Буллеты можно кликать мышкой — при этом переключается слайд. */
+      el: ".swiper-pagination",
       clickable: true,
     },
-  })
-}) 
+  });
+  /* Переключение вкладок в секции search */
+  const searchTabs = jSuites.tabs(document.getElementById('search__inner'), {
+    /*  Содержимое табов */
+    data: [
+      {
+        title: 'Поиск по номеру',
+        content: `
+          <form action="#" class="search__content-form">
+            <input
+              type="text"
+              class="search__content-input"
+              placeholder="Введите номер"
+            />
+            <button class="search__content-btn" type="submit">
+              Искать
+            </button>
+          </form>
+        `
+      },
+      {
+        title: 'Поиск по марке',
+        content: `
+          <form action="#" class="search__content-form">
+            <input
+              type="text"
+              class="search__content-input"
+              placeholder="Введите марку"
+            />
+            <button class="search__content-btn" type="submit">
+              Искать
+            </button>
+          </form>
+        `
+      },
+      {
+        title: 'Поиск по названию товара',
+        content: `
+          <form action="#" class="search__content-form">
+            <input
+              type="text"
+              class="search__content-input"
+              placeholder="Введите название"
+            />
+            <button class="search__content-btn" type="submit">
+              Искать
+            </button>
+          </form>
+        `
+      },
+    ],
+    /* Активный таб по умолчанию */
+    onload: (el, inst) => inst.open(1),
+  });
+
+});
