@@ -111,7 +111,7 @@ body.page-home {
               transition: all 0.5s;
             }
 
-            // Анимация "уходящей" полосы.
+            // ???????? "????????" ??????.
             &:hover::before {
               width: 100%;
               left: 0;
@@ -135,8 +135,8 @@ body.page-home {
       }
     }
   }
-
   .main {
+    /* ?????? ??????? ? ?????????? ???????? ????? */
     .banner-section {
       &__inner {
         display: flex;
@@ -245,6 +245,7 @@ body.page-home {
         }
       }
     }
+
     .search {
       height: 122px;
       margin-bottom: 80px;
@@ -307,7 +308,6 @@ body.page-home {
       background: none;
       cursor: pointer;
     }
-
     .search .jtabs-headers .jtabs-selected {
       border-radius: 5px;
       @extend %SFProDisplay-700;
@@ -376,8 +376,53 @@ body.page-home {
         flex: 1 1 auto;
       }
     }
-  }
 
+    .products {
+      margin-bottom: 86px;
+      &__inner {
+        border: 1px solid red;
+        height: 450px;
+        padding: 0 0 0 20px;
+      }
+      &__title {
+        padding: 25px 0 25px;
+        @extend %Barlow-700;
+        font-size: 25px;
+      }
+    }
+
+    .products .jtabs-headers {
+      display: flex;
+      gap: 50px;
+    }
+    .products .jtabs-headers div {
+      position: relative;
+      padding: 10px 0;
+      @extend %SFProDisplay-400;
+      font-size: 15px;
+      background: none;
+      cursor: pointer;
+      color: vars.$main-color;
+    }
+    .products .jtabs-headers div::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background-color: vars.$accent-color;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .products .jtabs-headers .jtabs-selected::after {
+      transform: scaleX(1);
+    }
+  }
   .footer {
+    border: 1px solid red;
+    /* IN PROGRESS */
   }
 }

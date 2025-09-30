@@ -28,21 +28,20 @@ li {
   list-style: none;
 }
 
+/* Настройка глобального цвета ссылок */
 a {
   text-decoration: none;
   color: vars.$main-color;
 }
-
+/* Настройка глобальных стилей страниц */
 body {
-  // Подключаем основной шрифт и нужное начертание
   @extend %SFProDisplay-400;
   font-size: 18px;
   line-height: 21px;
   color: vars.$main-color;
 }
-
+/* Настройка контейнера */
 .container {
-  // Центрируем контент и задаём максимальную ширину
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;

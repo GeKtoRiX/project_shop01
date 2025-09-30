@@ -145,4 +145,131 @@ document.addEventListener("DOMContentLoaded", () => {
     onload: (el, inst) => inst.open(1),
   });
 
+  const productsTabs = jSuites.tabs(document.getElementById('products__tabs'), {
+    animation: true,
+
+    /*  Содержимое табов */
+    data: [
+      {
+        title: 'Запчасти',
+        content:
+          `
+        `
+      },
+      {
+        title: 'Моторы',
+        content:
+          `
+ 
+        `
+      },
+      {
+        title: 'Шины',
+        content:
+          `
+
+        `
+      },
+      {
+        title: 'Электроника',
+        content:
+          `
+ 
+        `
+      },
+      {
+        title: 'Инструменты',
+        content:
+          `
+
+        `
+      },
+      {
+        title: 'Аксессуары',
+        content:
+
+          `
+        `
+      },
+    ],
+    /* Активный таб по умолчанию */
+    onload: (el, inst) => {
+      inst.open(0);
+
+      new Swiper(".banner-section__slider", {
+        /*
+         * Подключаем нужные модули.
+         * Без них слайдер не будет знать про стрелки, точки и автопрокрутку.
+         */
+        modules: [
+          /*
+           * Navigation — добавляет стрелки «вперёд/назад».
+           * Сопрягается с объектом настроек `navigation` ниже.
+           */
+          Navigation,
+
+          /*
+           * Pagination — рисует буллеты (точки) для навигации.
+           * Работает в связке с объектом `pagination` ниже.
+           */
+          Pagination,
+
+          /*
+           * Autoplay — включает автоматическое пролистывание слайдов.
+           * Конкретные параметры управляются в объекте `autoplay` ниже.
+           */
+          Autoplay,
+        ],
+
+        /*
+         * Количество видимых слайдов одновременно.
+         * Здесь всегда показывается один слайд.
+         */
+        slidesPerView: 1,
+
+        /*
+         * Включаем бесконечный цикл.
+         * После последнего слайда снова идёт первый.
+         */
+        loop: true,
+
+        /*
+         * Скорость анимации переключения (в миллисекундах).
+         * Здесь — 600 мс.
+         */
+        speed: 600,
+
+        /*
+         * Настройки автопрокрутки.
+         * - delay: задержка между переключениями (3000 мс = 3 секунды).
+         * - disableOnInteraction: false → автопрокрутка не останавливается при ручном управлении.
+         */
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+
+        /*
+         * Настройки стрелок навигации.
+         * Указываем селекторы кнопок "вперёд" и "назад".
+         */
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        /*
+         * Настройки пагинации (точки).
+         * - el: контейнер для точек.
+         * - clickable: true → точки можно кликать.
+         */
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    }
+
+  });
+
 });
