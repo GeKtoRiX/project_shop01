@@ -14,83 +14,35 @@ import "../styles/pages/_home.scss";
  * выполняем инициализацию слайдера и вкладок.
  */
 document.addEventListener("DOMContentLoaded", () => {
-  /*
-   * Создаём новый экземпляр Swiper.
-   * Первый параметр — CSS-селектор контейнера слайдера (.banner-section__slider).
-   * Второй параметр — объект настроек.
-   */
-  new Swiper(".banner-section__slider", {
-    /*
-     * Подключаем нужные модули.
-     * Без них слайдер не будет знать про стрелки, точки и автопрокрутку.
-     */
-    modules: [
-      /*
-       * Navigation — добавляет стрелки «вперёд/назад».
-       * Сопрягается с объектом настроек `navigation` ниже.
-       */
-      Navigation,
 
-      /*
-       * Pagination — рисует буллеты (точки) для навигации.
-       * Работает в связке с объектом `pagination` ниже.
-       */
-      Pagination,
-
-      /*
-       * Autoplay — включает автоматическое пролистывание слайдов.
-       * Конкретные параметры управляются в объекте `autoplay` ниже.
-       */
-      Autoplay,
-    ],
-
-    /*
-     * Количество видимых слайдов одновременно.
-     * Здесь всегда показывается один слайд.
-     */
-    slidesPerView: 1,
-
-    /*
-     * Включаем бесконечный цикл.
-     * После последнего слайда снова идёт первый.
-     */
-    loop: true,
-
-    /*
-     * Скорость анимации переключения (в миллисекундах).
-     * Здесь — 600 мс.
-     */
-    speed: 600,
-
-    /*
-     * Настройки автопрокрутки.
-     * - delay: задержка между переключениями (3000 мс = 3 секунды).
-     * - disableOnInteraction: false → автопрокрутка не останавливается при ручном управлении.
-     */
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
+  const sliders = [
+    {
+      el: ".js-banner-slider",
+      options: {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        speed: 600,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        navigation: {
+          nextEl: ".js-banner-slider .swiper-button-next",
+          prevEl: ".js-banner-slider .swiper-button-prev",
+        },
+        pagination: {
+          el: ".js-banner-slider .swiper-pagination",
+          clickable: true,
+        },
+      },
     },
+  ];
 
-    /*
-     * Настройки стрелок навигации.
-     * Указываем селекторы кнопок "вперёд" и "назад".
-     */
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-
-    /*
-     * Настройки пагинации (точки).
-     * - el: контейнер для точек.
-     * - clickable: true → точки можно кликать.
-     */
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+  sliders.forEach(({ el, options }) => {
+    if (document.querySelector(el)) {
+      new Swiper(el, options);
+    }
   });
+
   /* Переключение вкладок в секции search */
   const searchTabs = jSuites.tabs(document.getElementById('search__inner'), {
     /*  Содержимое табов */
@@ -154,117 +106,1034 @@ document.addEventListener("DOMContentLoaded", () => {
         title: 'Запчасти',
         content:
           `
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
       {
         title: 'Моторы',
         content:
           `
- 
+                  <!-- Контейнер Сладйера - Swiper -->
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
       {
         title: 'Шины',
         content:
           `
-
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
       {
         title: 'Электроника',
         content:
           `
- 
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
       {
         title: 'Инструменты',
         content:
           `
-
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
       {
         title: 'Аксессуары',
         content:
-
           `
+            <div class="products-section__slider swiper js-products-slider">
+              <!-- Обертка слайдов -->
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="swiper-slide" href="#">
+                  <div class="banner-section__item sale-item" href="#">
+                    <div class="sale-item__top">
+                      <div class="sale-item__info">Акция</div>
+                      <div class="sale-item__price">
+                        <div class="price sale-item__price-new">190 000</div>
+                        <div class="price sale-item__price-old">225 000</div>
+                      </div>
+                    </div>
+                    <img
+                      class="sale-item__img"
+                      src="./src/assets/images/content/sale-banner.png"
+                      width="127"
+                      height="178"
+                      alt="sale-item"
+                    />
+                    <h5 class="sale-item__title">
+                      Лодочный мотор Suzuki DF9.9BRS
+                    </h5>
+                    <div class="sale-item__footer">
+                      <div class="sale-item__text-info">Акция действует до</div>
+                      <span class="sale-item__date">31.08.2026</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Элемент пагинации -->
+              <div class="swiper-pagination"></div>
+              <!-- Кнопка переключения назад -->
+              <div class="swiper-button-prev"></div>
+              <!-- Кнопка переключения вперед -->
+              <div class="swiper-button-next"></div>
+              <!-- Полоса прокрутки слайдера -->
+              <div class="swiper-scrollbar"></div>
+            </div>
         `
       },
     ],
     /* Активный таб по умолчанию */
     onload: (el, inst) => {
       inst.open(0);
-
-      new Swiper(".banner-section__slider", {
-        /*
-         * Подключаем нужные модули.
-         * Без них слайдер не будет знать про стрелки, точки и автопрокрутку.
-         */
-        modules: [
-          /*
-           * Navigation — добавляет стрелки «вперёд/назад».
-           * Сопрягается с объектом настроек `navigation` ниже.
-           */
-          Navigation,
-
-          /*
-           * Pagination — рисует буллеты (точки) для навигации.
-           * Работает в связке с объектом `pagination` ниже.
-           */
-          Pagination,
-
-          /*
-           * Autoplay — включает автоматическое пролистывание слайдов.
-           * Конкретные параметры управляются в объекте `autoplay` ниже.
-           */
-          Autoplay,
-        ],
-
-        /*
-         * Количество видимых слайдов одновременно.
-         * Здесь всегда показывается один слайд.
-         */
-        slidesPerView: 1,
-
-        /*
-         * Включаем бесконечный цикл.
-         * После последнего слайда снова идёт первый.
-         */
+      new Swiper(".products-section__slider ", {
+        modules: [Navigation, Autoplay],
+        slidesPerView: 4,
+        spaceBetween: 30,
         loop: true,
-
-        /*
-         * Скорость анимации переключения (в миллисекундах).
-         * Здесь — 600 мс.
-         */
         speed: 600,
-
-        /*
-         * Настройки автопрокрутки.
-         * - delay: задержка между переключениями (3000 мс = 3 секунды).
-         * - disableOnInteraction: false → автопрокрутка не останавливается при ручном управлении.
-         */
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-
-        /*
-         * Настройки стрелок навигации.
-         * Указываем селекторы кнопок "вперёд" и "назад".
-         */
+        autoplay: { delay: 5000, disableOnInteraction: false },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".js-products-slider .swiper-button-next",
+          prevEl: ".js-products-slider .swiper-button-prev",
         },
-
-        /*
-         * Настройки пагинации (точки).
-         * - el: контейнер для точек.
-         * - clickable: true → точки можно кликать.
-         */
         pagination: {
-          el: ".swiper-pagination",
+          el: ".js-products-slider .swiper-pagination",
           clickable: true,
         },
       });

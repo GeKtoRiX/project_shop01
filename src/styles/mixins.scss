@@ -1,89 +1,96 @@
-﻿/* Шаблонный свайпер */
-@mixin default-swiper {
-  /*  Контейнер всего слайдера */
-  .swiper {
-    // Растягивание блока на всю доступную ширину.
-    width: 100%;
-    // Ограничиваем максимальную ширину контейнера.
-    height: 100%;
+﻿@mixin swiper-theme(
+  $root,
+  $nav-color: #fff,
+  $nav-disabled: #999,
+  $nav-offset: 22px,
+  $pagination-bottom: 40px,
+  $bullet-size: 8px,
+  $bullet-color: #fff,
+  $bullet-inactive-color: transparent,
+  $hide-arrows: false,
+  $slide-bg: #f3f4f6,
+  $nav-outside-offset: 0,
+  $nav-sides-offset: 22px,
+  $nav-top-offset: 50%
+) {
+  #{$root} {
+    // Основные настройки: задаём CSS-переменные Swiper
+    &.swiper {
+      // Расширяем контейнер, чтобы стрелки могли выходить за пределы блока
+      height: 100%;
+      box-sizing: border-box;
+      margin-left: -#{$nav-outside-offset};
+      margin-right: -#{$nav-outside-offset};
+      padding-left: #{$nav-outside-offset};
+      padding-right: #{$nav-outside-offset};
+      /* Цвет активных стрелок */
+      --swiper-navigation-color: #{$nav-color};
+      /* Цвет стрелок в неактивном состоянии */
+      --swiper-navigation-disabled-color: #{$nav-disabled};
+      /* Отступ стрелок от боковых краёв */
+      --swiper-navigation-sides-offset: #{$nav-sides-offset};
+      /* Позиция кнопки "Prev" по вертикали */
+      --swiper-navigation-top-offset: #{$nav-top-offset};
+      /* Нижний отступ для кнопки "Prev" (auto по умолчанию) */
+      --swiper-navigation-bottom-offset: auto;
+      /* Позиция кнопки "Next" по вертикали */
+      --swiper-navigation-next-top-offset: 50%;
+    }
 
-    /* Цвет стрелок (активное состояние) */
-    --swiper-navigation-color: #fff;
-    /* Цвет стрелок в неактивном состоянии */
-    --swiper-navigation-disabled-color: #999;
-    /* Отступ стрелок от боковых краёв(по умолчанию 22px) */
-    --swiper-navigation-sides-offset: 22px;
+    .swiper-slide {
+      // Растягиваем слайды и центрируем содержимое
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $slide-bg;
+      cursor: pointer;
+    }
 
-    /* Смещение стрелки "Prev" от верхнего края */
-    --swiper-navigation-top-offset: 50%;
-    /* Смещение стрелки "Prev" от нижнего края(обычно auto) */
-    --swiper-navigation-bottom-offset: auto;
+    // Стрелки навигации
+    .swiper-button-prev,
+    .swiper-button-next {
+      position: absolute;
+      display: #{if($hide-arrows, "none", "flex")};
+      width: 15px;
+      height: 28px;
+    }
 
-    /* Смещение стрелки "Next" от верхнего края */
-    --swiper-navigation-next-top-offset: 50%;
-    /* Смещение стрелки "Next" от нижнего края(обычно auto) */
-    --swiper-navigation-next-bottom-offset: auto;
-  }
-  /* Обёртка, в которой крутятся слайды */
-  .swiper-wrapper {
-    /* Слайды тянутся на одинаковую высоту */
-    align-items: stretch;
-  }
-  /* Отдельный слайд */
-  .swiper-slide {
-    // Определяем высоту слайда
-    width: 100%;
-    // Определяем минимальную высоту слайда
-    height: 100%;
-    /* Делаем флекс-контейнер */
-    display: flex;
-    /* Центрируем содержимое по вертикали */
-    align-items: center;
-    /* Центрируем содержимое по горизонтали */
-    justify-content: center;
-    // Устанавливаем светлый фон слайда
-    background-color: #f3f4f6;
-    cursor: pointer;
-  }
-  /* Кастомные настройки навигации. */
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 15px;
-    height: 30px;
-  }
-  /*  Стандартные стиои пагинации */
-  .swiper-pagination {
-    /* Отступ сверху(auto = не используется) */
-    --swiper-pagination-top: auto;
-    /* Отступ снизу блока пагинации */
-    --swiper-pagination-bottom: 40px;
-    /* Смещение от левого края */
-    --swiper-pagination-left: auto;
-    /* Смещение от правого края */
-    --swiper-pagination-right: auto;
+    .swiper-pagination {
+      /* Отступ сверху (auto — не используется) */
+      --swiper-pagination-top: auto;
+      /* Смещения по горизонтали */
+      --swiper-pagination-left: auto;
+      --swiper-pagination-right: auto;
+      /* Отступ снизу блока пагинации */
+      --swiper-pagination-bottom: #{$pagination-bottom};
+      /* Общий размер буллета */
+      --swiper-pagination-bullet-size: #{$bullet-size};
 
-    /* Универсальный размер буллета(ширина,высота одновременно) */
-    --swiper-pagination-bullet-size: 11px;
-    /* Ширина буллета */
-    // --swiper-pagination-bullet-width: 11px;
-    /* Высота буллета */
-    // --swiper-pagination-bullet-height: 11px;
+      /* При необходимости можно раскомментировать ширину/высоту буллета */
+      // --swiper-pagination-bullet-width: 10px;
+      // --swiper-pagination-bullet-height: 10px;
 
-    /* Радиус скругления буллета (50% = круг) */
-    --swiper-pagination-bullet-border-radius: 50%;
+      /* Скругление буллета (50% = круг) */
+      --swiper-pagination-bullet-border-radius: 50%;
+      /* Цвет активного буллета */
+      --swiper-pagination-color: #{$bullet-color};
+      /* Прозрачность активного буллета */
+      --swiper-pagination-bullet-opacity: 1;
+      /* Цвет неактивного буллета */
+      --swiper-pagination-bullet-inactive-color: #{$bullet-inactive-color};
+      /* Прозрачность неактивного буллета */
+      --swiper-pagination-bullet-inactive-opacity: 1;
+    }
 
-    /* Цвет активного буллета */
-    --swiper-pagination-color: #ffffff;
-    /* Прозрачность активного буллета */
-    --swiper-pagination-bullet-opacity: 1;
+    .swiper-wrapper {
+      // Слайды тянутся на одинаковую высоту
+      align-items: stretch;
+    }
 
-    /* Цвет неактивных буллетов */
-    --swiper-pagination-bullet-inactive-color: transparent;
-    /* Прозрачность неактивных буллетов */
-    --swiper-pagination-bullet-inactive-opacity: 1;
-  }
-  /* Кастомные стили буллетов пагинации */
-  .swiper-pagination-bullet {
-    border: 1px solid #ffffff;
+    // Добавляем обводку для буллетов пагинации
+    .swiper-pagination-bullet {
+      border: 1px solid #{$bullet-color};
+    }
   }
 }

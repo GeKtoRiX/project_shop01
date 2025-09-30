@@ -1,6 +1,12 @@
 ﻿@use "../mixins.scss" as mixins;
 @use "../variables" as vars;
-@include mixins.default-swiper;
+
+@include mixins.swiper-theme(".js-banner-slider", $bullet-size: 11px);
+@include mixins.swiper-theme(
+  ".js-products-slider",
+  $nav-sides-offset: 0,
+  $nav-color: red
+);
 
 body.page-home {
   .header {
@@ -136,7 +142,6 @@ body.page-home {
     }
   }
   .main {
-    /* ?????? ??????? ? ?????????? ???????? ????? */
     .banner-section {
       &__inner {
         display: flex;
@@ -157,7 +162,6 @@ body.page-home {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-
         .sale-item {
           &__top {
             width: 100%;
@@ -381,7 +385,6 @@ body.page-home {
       margin-bottom: 86px;
       &__inner {
         border: 1px solid red;
-        height: 450px;
         padding: 0 0 0 20px;
       }
       &__title {
