@@ -2,11 +2,7 @@
 @use "../variables" as vars;
 
 @include mixins.swiper-theme(".js-banner-slider", $bullet-size: 11px);
-@include mixins.swiper-theme(
-  ".js-products-slider",
-  $nav-sides-offset: 0,
-  $nav-color: red
-);
+@include mixins.swiper-theme(".js-products-slider", $slide-bg: #fff);
 
 body.page-home {
   .header {
@@ -99,7 +95,7 @@ body.page-home {
           justify-content: space-around;
           &__item {
             position: relative;
-            padding: 26.5px 0;
+            padding: 25px 0;
             font-size: 20px;
           }
 
@@ -112,35 +108,22 @@ body.page-home {
               left: auto;
               right: 0;
               height: 3px;
-              bottom: -17px;
+              bottom: -25px;
               background-color: vars.$accent-color;
               transition: all 0.5s;
             }
 
-            // ???????? "????????" ??????.
             &:hover::before {
               width: 100%;
               left: 0;
               right: auto;
-            }
-
-            &--active {
-              @extend %SFProDisplay-600;
-              &::after {
-                content: "";
-                position: absolute;
-                height: 3px;
-                bottom: -17px;
-                left: 0;
-                right: 0;
-                background-color: vars.$accent-color;
-              }
             }
           }
         }
       }
     }
   }
+
   .main {
     .banner-section {
       &__inner {
@@ -297,9 +280,11 @@ body.page-home {
         text-transform: uppercase;
         color: #fff;
         background-color: vars.$accent-color;
+        cursor: pointer;
       }
     }
 
+    // Стилизация табов jtabs
     .search .jtabs-headers {
       display: flex;
       gap: 30px;
@@ -383,20 +368,19 @@ body.page-home {
 
     .products {
       margin-bottom: 86px;
-      &__inner {
-        border: 1px solid red;
-        padding: 0 0 0 20px;
-      }
       &__title {
-        padding: 25px 0 25px;
+        padding: 25px 0 25px 20px;
         @extend %Barlow-700;
         font-size: 25px;
       }
     }
-
+    // Стилизация табов jtabs
     .products .jtabs-headers {
       display: flex;
       gap: 50px;
+      margin-bottom: 20px;
+      padding: 0 20px 0;
+      user-select: none;
     }
     .products .jtabs-headers div {
       position: relative;
@@ -414,12 +398,11 @@ body.page-home {
       right: 0;
       bottom: 0;
       height: 2px;
-      background-color: vars.$accent-color;
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.3s ease;
+      background-color: vars.$accent-color;
     }
-
     .products .jtabs-headers .jtabs-selected::after {
       transform: scaleX(1);
     }
