@@ -97,6 +97,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
       },
     },
+    {
+      el: "#products__tabs-2",
+      options: {
+        animation: true,
+        data: [
+          { title: "Запчасти" },
+          { title: "Моторы" },
+          { title: "Шины" },
+          { title: "Электроника" },
+          { title: "Инструменты" },
+          { title: "Аксессуары" },
+        ],
+      },
+    },
   ];
   /* Инициализация табов */
   tabs.forEach(({ el, options }) => {
