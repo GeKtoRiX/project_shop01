@@ -1,0 +1,47 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* Конфигурация слайдеров */
+  const sliders = [
+    {
+      el: ".js-banner-slider",
+      options: {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 1,
+        loop: true,
+        speed: 600,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        navigation: {
+          nextEl: ".js-banner-slider .swiper-button-next",
+          prevEl: ".js-banner-slider .swiper-button-prev",
+        },
+        pagination: {
+          el: ".js-banner-slider .swiper-pagination",
+          clickable: true,
+        },
+      },
+    },
+    {
+      el: ".js-products-slider",
+      options: {
+        modules: [Autoplay],
+        slidesPerView: 4,
+        loop: true,
+        speed: 600,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        navigation: {
+          nextEl: ".js-products-slider .swiper-button-next",
+          prevEl: ".js-products-slider .swiper-button-prev",
+        },
+        pagination: {
+          el: ".js-products-slider .swiper-pagination",
+          clickable: true,
+        },
+      },
+    },
+  ];
+  /* Инициализация слайдеров */
+  sliders.forEach(({ el, options }) => {
+    if (document.querySelector(el)) {
+      new Swiper(el, options);
+    }
+  });
